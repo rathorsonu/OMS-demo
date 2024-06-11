@@ -29,7 +29,12 @@ test:
   password: password #<%= ENV['TEMPLATEAPP_DATABASE_PASSWORD'] %>
   host: localhost #<%= ENV['TEMPLATE_DATABASE_HOSTNAME'] %>
   port: 5432
-# production:
-#   <<: *default
-#   database: db/production.sqlite3
+production:
+  <<: *default
+  adapter: postgresql
+  database: oms_prod #<%= ENV['TEMPLATEAPP_DATABASE'] %>
+  username: postgres #<%= ENV['TEMPLATEAPP_DATABASE_USER'] %>
+  password: password #<%= ENV['TEMPLATEAPP_DATABASE_PASSWORD'] %>
+  host: localhost #<%= ENV['TEMPLATE_DATABASE_HOSTNAME'] %>
+  port: 5432
 
