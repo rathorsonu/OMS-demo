@@ -4,7 +4,7 @@ lock "~> 3.18.1"
 sset :application, 'oms_demo'
 set :repo_url, 'git@github.com:rathorsonu/OMS-demo.git' # Edit this to match your repository
 set :branch, :main
-set :deploy_to, '/home/ubuntu/oms_demo'
+set :deploy_to, '/home/deploy/oms_demo'
 set :use_sudo, true
 set :branch, 'master'
 set :linked_files, %w{config/master.key config/database.yml}
