@@ -33,3 +33,15 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
+
+# config/puma.rb
+
+directory '/home/deploy/oms_demo/current'
+rackup "/home/deploy/oms_demo/current/config.ru"
+environment 'production'
+
+tag ''
+
+pidfile "/home/deploy/oms_demo/shared/tmp/pids/puma.pid"
+state_path "/home/deploy/oms_demo/shared/tmp/pids/puma.state"
+stdout_redirect "/home/deploy
