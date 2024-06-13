@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:rathorsonu/OMS-demo.git' # Edit this to match you
 set :branch, :main
 set :deploy_to, '/home/deploy/oms_demo'
 set :use_sudo, true
-set :branch, 'master'
+set :branch, 'main'
 set :linked_files, %w{config/master.key config/database.yml}
 set :rails_env, 'production'
 set :keep_releases, 2
