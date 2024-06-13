@@ -23,16 +23,7 @@ set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
-namespace :puma do
-desc 'Create Directories for Puma Pids and Socket'
-task :make_dirs do
-on roles(:app) do
-execute "mkdir #{shared_path}/tmp/sockets -p"
-execute "mkdir #{shared_path}/tmp/pids -p"
-end
-end
-before :start, :make_dirs
-end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -66,3 +57,15 @@ end
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+namespace :deploy do
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+end
