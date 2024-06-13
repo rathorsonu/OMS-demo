@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.18.1"
 
-sset :application, 'oms_demo'
+set :application, 'oms_demo'
 set :repo_url, 'git@github.com:rathorsonu/OMS-demo.git' # Edit this to match your repository
 set :branch, :main
 set :deploy_to, '/home/deploy/oms_demo'
