@@ -5,6 +5,8 @@ set :application, 'oms_demo'
 set :repo_url, 'git@github.com:rathorsonu/OMS-demo.git' # Edit this to match your repository
 set :branch, :main
 set :deploy_to, '/home/deploy/oms_demo'
+set :default_shell, '/bin/bash -l'
+set :puma_conf, "/home/deploy/oms_demo/shared/config/puma.rb"
 set :use_sudo, true
 set :branch, 'main'
 set :linked_files, %w{config/master.key config/database.yml}
@@ -14,6 +16,9 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :linked_files, %w{config/database.yml config/master.key}
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
+
+
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
 set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
@@ -58,7 +63,6 @@ set :puma_init_active_record, true  # Change to false when not using ActiveRecor
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 namespace :deploy do
-
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -67,5 +71,4 @@ namespace :deploy do
       # end
     end
   end
-
 end
