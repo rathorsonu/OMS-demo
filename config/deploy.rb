@@ -12,7 +12,7 @@ set :pty, true
 set :branch, 'main'
 set :linked_files, %w{config/master.key config/database.yml}
 append :linked_files, 'config/master.key'
-
+append :linked_files, 'config/database.yml'
 set :rails_env, 'production'
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 # Default branch is :master
