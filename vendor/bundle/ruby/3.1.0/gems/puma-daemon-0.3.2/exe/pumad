@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# vim: ft=ruby
+
+lib_path = File.expand_path("#{File.dirname(__FILE__)}/../lib")
+$LOAD_PATH << lib_path if File.exist?(lib_path) && !$LOAD_PATH.include?(lib_path)
+
+require 'puma/daemon'
+
+# If we are passing -d or --daemonize, do so
+# otherwise invoke to the original puma
+if (ARGV & %w[-d --daemonize]).size.positive?
+  ARGV.delete '-d'
+  ARGV.delete '--daemonize'
+end
+
+Puma::Daemon::CLI.new(ARGV)&.run
