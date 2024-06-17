@@ -1,0 +1,18 @@
+current directory: /home/hp/Desktop/OMS_demo/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+/home/hp/.rvm/rubies/ruby-3.1.0/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/hp/Desktop/OMS_demo/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240617-89730-it2zth sitelibdir\=./.gem.20240617-89730-it2zth clean
+
+current directory: /home/hp/Desktop/OMS_demo/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240617-89730-it2zth sitelibdir\=./.gem.20240617-89730-it2zth
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /home/hp/Desktop/OMS_demo/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240617-89730-it2zth sitelibdir\=./.gem.20240617-89730-it2zth install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20240617-89730-it2zth
+
+current directory: /home/hp/Desktop/OMS_demo/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20240617-89730-it2zth sitelibdir\=./.gem.20240617-89730-it2zth clean
