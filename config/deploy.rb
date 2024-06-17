@@ -27,7 +27,7 @@ set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"    #accept array for multi-bind
-set :puma_conf, "#{shared_path}/puma.rb"
+set :puma_conf, "#{shared_path}/config/puma.rb"
 set :puma_access_log, "#{shared_path}/log/puma_error.log"
 set :puma_error_log, "#{shared_path}/log/puma_access.log"
 set :puma_role, :app
@@ -38,7 +38,9 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
 
-
+within current_path do
+  execute :bundle, :exec, :puma, '-C', "#{shared_path}/puma.rb"
+end
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
