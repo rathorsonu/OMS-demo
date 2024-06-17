@@ -19,7 +19,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :keep_releases, 5
 set :rvm_type, :user
-set :rvm_ruby_version, 'ruby-2.7.6' # Edit this if you are using MRI Ruby
+set :rvm_ruby_version, 'ruby-3.1.0' # Edit this if you are using MRI Ruby
 
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
