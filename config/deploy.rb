@@ -85,4 +85,40 @@ namespace :deploy do
     end
   end
 
+
 end
+
+namespace :puma do
+  desc 'Create Directories for Puma Pids and Socket'
+  task :make_dirs do
+    on roles(:app) do
+      execute "mkdir #{shared_path}/tmp/sockets -p"
+      execute "mkdir #{shared_path}/tmp/pids -p"
+    end
+  end
+
+  before :start, :make_dirs
+
+  desc 'Start Puma'
+  task :start do
+    on roles(:app) do
+      execute "sudo systemctl start puma"
+    end
+  end
+
+  desc 'Stop Puma'
+  task :stop do
+    on roles(:app) do
+      execute "sudo systemctl stop puma"
+    end
+  end
+
+  desc 'Restart Puma'
+  task :restart do
+    on roles(:app) do
+      execute "sudo systemctl restart puma"
+    end
+  end
+end
+
+after 'deploy:publishing', 'puma:restart'
