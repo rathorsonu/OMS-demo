@@ -1,4 +1,6 @@
 # config valid for current version and patch releases of Capistrano
+require 'capistrano/puma'
+
 lock "~> 3.18.1"
 
 set :application, 'oms_demo'
