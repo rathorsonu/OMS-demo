@@ -75,6 +75,7 @@ set :puma_preload_app, false
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
 # kill -s SIGTERM pid   # Stop puma
+
 namespace :deploy do
 
   after :restart, :clear_cache do
@@ -89,37 +90,16 @@ namespace :deploy do
 
 end
 
+# /home/deploy/oms_demo/current/config/deploy.rb or similar
+
 namespace :puma do
-  desc 'Create Directories for Puma Pids and Socket'
-  task :make_dirs do
-    on roles(:app) do
-      execute "mkdir #{shared_path}/tmp/sockets -p"
-      execute "mkdir #{shared_path}/tmp/pids -p"
-    end
-  end
-
-  before :start, :make_dirs
-
-  desc 'Start Puma'
-  task :start do
-    on roles(:app) do
-      execute "sudo systemctl start puma"
-    end
-  end
-
-  desc 'Stop Puma'
-  task :stop do
-    on roles(:app) do
-      execute "sudo systemctl stop puma"
-    end
-  end
-
   desc 'Restart Puma'
   task :restart do
     on roles(:app) do
-      execute "sudo systemctl restart puma"
+      within current_path do
+        execute :bundle, :exec, :puma, '--config', "#{shared_path}/config/puma.rb", '--daemon'
+      end
     end
   end
+  after 'deploy:publishing', 'puma:restart'
 end
-
-after 'deploy:publishing', 'puma:restart'
