@@ -13,7 +13,7 @@ gem "sprockets-rails"
 gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 6.0'
+gem 'puma'
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -48,16 +48,28 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+   # Security tools
+  gem 'brakeman'
+  gem 'bundler-audit'
+  gem 'ruby_audit'
+  # Database
+  gem 'pg'
+  # Linting
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem  "figaro"
-  gem  "capistrano-rails"
-  gem  "capistrano-bundler" 
-  gem  "capistrano-rvm"
-  gem  "capistrano3-puma"
+ group :development do
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma', '~> 5.2.0', require: false
+end
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -73,4 +85,3 @@ group :test do
   gem "webdrivers"
 end
 
-gem "puma-daemon", "~> 0.3.2"
