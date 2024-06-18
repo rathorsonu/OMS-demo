@@ -35,15 +35,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-
-          bundle config path vendor/bundle
-          bundle update puma
+          bundle config set path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
 
-
       - name: Set up database schema
-        run: bundle exec rails db:migrate
-       
+        run: bundle exec rails db:schema:load
 
       - name: Run tests
         run: bundle exec rake
@@ -64,9 +60,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-
-          bundle config path vendor/bundle
-          bundle update puma
+          bundle config set path 'vendor/bundle'
           bundle install --jobs 4 --retry 3
 
       - name: Security audit dependencies
@@ -74,6 +68,10 @@ jobs:
 
       - name: Security audit application code
         run: bundle exec brakeman -q -w2
+
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel
+
 
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
