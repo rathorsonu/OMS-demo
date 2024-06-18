@@ -10,10 +10,10 @@ gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
 # gem "sqlite3", "~> 1.4"
-gem "pg"
+gem 'pg', '>= 0'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.6.8'
+gem 'puma', '~> 6.0' # Ensure compatibility with Rack 3
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -52,8 +52,6 @@ group :development, :test do
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'ruby_audit'
-  # Database
-  gem 'pg'
   # Linting
   gem 'rubocop'
   gem 'rubocop-rails'
@@ -68,7 +66,8 @@ group :development do
     gem 'capistrano-rvm',     require: false
     gem 'capistrano-rails',   require: false
     gem 'capistrano-bundler', require: false
-    gem 'capistrano3-puma', require: false
+    gem 'capistrano3-puma'
+    gem 'rack', '~> 2.2', '>= 2.2.3'
 end
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
