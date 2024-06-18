@@ -37,6 +37,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+          bundle update --jobs 4 --retry 3
 
       - name: Set up database schema
         run: bundle exec rails db:schema:load
@@ -62,6 +63,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+          bundle update --jobs 4 --retry 3
 
       - name: Security audit dependencies
         run: bundle exec bundle audit --update
